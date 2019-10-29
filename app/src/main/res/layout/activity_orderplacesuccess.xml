@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".orderplacesuccess">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <cdflynn.android.library.checkview.CheckView
+            android:id="@+id/check"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            app:checkView_strokeColor="#5C25B7"
+            app:checkView_strokeWidth="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:id="@+id/text"
+            android:text="Your order has been placed successfully"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:layout_below="@id/check"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text1"
+            android:text="Thank you for shopping with us"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:layout_marginTop="20sp"
+            android:layout_below="@id/text"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>
