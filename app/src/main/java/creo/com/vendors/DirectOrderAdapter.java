@@ -47,6 +47,7 @@ public class DirectOrderAdapter extends RecyclerView.Adapter<DirectOrderAdapter.
         Picasso.with(context1).load(dataModelArrayList.get(position).getImg()).into(holder.iv);
         holder.customer.setText(dataModelArrayList.get(position).getName());
         holder.earning.setText(dataModelArrayList.get(position).getPrice());
+        holder.status.setText(dataModelArrayList.get(position).getdelivery());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +68,7 @@ public class DirectOrderAdapter extends RecyclerView.Adapter<DirectOrderAdapter.
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView price, name, qty,delivery,earning,customer;
+        TextView price, name, qty,delivery,earning,customer,status;
         LinearLayout linearLayout;
         ImageView iv;
 
@@ -78,6 +79,7 @@ public class DirectOrderAdapter extends RecyclerView.Adapter<DirectOrderAdapter.
             linearLayout = itemView.findViewById(R.id.layout);
             name = (TextView) itemView.findViewById(R.id.title);
             customer = itemView.findViewById(R.id.name);
+            status=itemView.findViewById(R.id.st);
             price = (TextView) itemView.findViewById(R.id.price);
             iv = itemView.findViewById(R.id.image);
 //            qty = (TextView) itemView.findViewById(R.id.non);

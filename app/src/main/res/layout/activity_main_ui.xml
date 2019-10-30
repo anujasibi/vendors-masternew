@@ -11,12 +11,7 @@
         android:id="@+id/re"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="28dp"
-            android:layout_height="60dp"
-            android:background="#5C25B7"
-            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
-            android:id="@+id/img"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -26,10 +21,9 @@
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_toEndOf="@+id/img"
             android:background="#5C25B7"
             android:id="@+id/tex"
-            android:layout_toRightOf="@+id/img" />
+            />
 
     </RelativeLayout>
 

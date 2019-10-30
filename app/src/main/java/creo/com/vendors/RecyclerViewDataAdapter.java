@@ -48,20 +48,49 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewIt
         carImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get car title text.
+
                 String carTitle = carTitleView.getText().toString();
                 // Create a snackbar and show it.
                 Snackbar snackbar = Snackbar.make(carImageView, "You click " + carTitle +" image", Snackbar.LENGTH_LONG);
                 snackbar.show();
+
+                if (carTitle.equals("Manual Orders")){
+                    Intent intent=new Intent(context,ManualOrders.class);
+                    context.startActivity(intent);
+                }
+
+                if (carTitle.equals("Manual Orders List")){
+                    Intent intent=new Intent(context,orderlist.class);
+                    context.startActivity(intent);
+                }
+                // Get car title text.
+
             }
         });
+
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String carTitle = carTitleView.getText().toString();
+                // Create a snackbar and show it.
+                Snackbar snackbar = Snackbar.make(carImageView, "You click " + carTitle +" image", Snackbar.LENGTH_LONG);
+                snackbar.show();
+
+                if (carTitle.equals("Manual Orders")){
+                    Intent intent=new Intent(context,ManualOrders.class);
+                    context.startActivity(intent);
+                }
+
+                if (carTitle.equals("Manual Orders List")){
+                    Intent intent=new Intent(context,orderlist.class);
+                    context.startActivity(intent);
+                }
 
             }
         });
+
+
 
 
 
@@ -85,9 +114,11 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewIt
 
 
 
+
+
             }
 
-            holder.getCarImageView().setOnClickListener(new View.OnClickListener() {
+            /*holder.getCarImageView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -95,7 +126,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewIt
                     context.startActivity(intent);
 
                 }
-            });
+            });*/
         }
     }
 

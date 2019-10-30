@@ -125,6 +125,7 @@ public class orderlist extends AppCompatActivity {
                                 playerModel.setName(dataobj.optString("name"));
                                 playerModel.setPrice(dataobj.optString("price"));
                                 playerModel.setStatus(dataobj.optString("qty"));
+                                playerModel.setdelivery(dataobj.optString("order_status"));
                                 playerModel.setImg(ApiClient.BASE_URL+"media/" + split);
 
                                 dataModelArrayList.add(playerModel);

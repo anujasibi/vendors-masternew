@@ -1,10 +1,12 @@
 package creo.com.vendors;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -19,6 +21,7 @@ public class MainUI extends AppCompatActivity {
 
     ImageView imageView;
     boolean doubleBackToExitPressedOnce = false;
+    CardView cardView;
 
     private List<CardRecyclerViewItem> carItemList = null;
 
@@ -31,13 +34,9 @@ public class MainUI extends AppCompatActivity {
 
         imageView=findViewById(R.id.img);
 
+        cardView=findViewById(R.id.card);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
 
 
@@ -55,6 +54,10 @@ public class MainUI extends AppCompatActivity {
         // Set data adapter.
         carRecyclerView.setAdapter(carDataAdapter);
 
+
+
+
+
     }
 
     /* Initialise car items in list. */
@@ -64,12 +67,13 @@ public class MainUI extends AppCompatActivity {
         {
             carItemList = new ArrayList<CardRecyclerViewItem>();
             carItemList.add(new CardRecyclerViewItem("Manual Orders", R.drawable.ic_add_shopping_cart_black_24dp));
-            carItemList.add(new CardRecyclerViewItem("B", R.drawable.ic_add_shopping_cart_black_24dp));
+            carItemList.add(new CardRecyclerViewItem("Manual Orders List", R.drawable.list));
             carItemList.add(new CardRecyclerViewItem("C", R.drawable.ic_add_shopping_cart_black_24dp));
             carItemList.add(new CardRecyclerViewItem("D", R.drawable.ic_add_shopping_cart_black_24dp));
             carItemList.add(new CardRecyclerViewItem("E", R.drawable.ic_add_shopping_cart_black_24dp));
             carItemList.add(new CardRecyclerViewItem("F", R.drawable.ic_add_shopping_cart_black_24dp));
         }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

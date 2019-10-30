@@ -2,7 +2,7 @@ package creo.com.vendors;
 
 public class DirectOrderPojo {
 
-    public String productname,name,price,status,img;
+    public String productname,name,price,status,img,deli;
 
     public String getProductname() {
         return productname;
@@ -35,6 +35,15 @@ public class DirectOrderPojo {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getdelivery() {
+        return deli;
+    }
+
+    public void setdelivery(String deli) {
+        this.deli = deli;
+    }
+
 
     public String getImg() {
         return img;
