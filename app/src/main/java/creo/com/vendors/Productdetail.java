@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,6 +72,8 @@ public class Productdetail extends AppCompatActivity {
         proceed = findViewById(R.id.proceed);
 
         recyclerView = findViewById(R.id.recyclerView);
+
+
         imageView=findViewById(R.id.back);
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -152,7 +156,7 @@ public class Productdetail extends AppCompatActivity {
                                 JSONObject fieldcab = dataobj.optJSONObject("fields");
                                 playerModel.setProduct_name(fieldcab.getString("name"));
                                 names.add(fieldcab.getString("name"));
-                                playerModel.setPrice(fieldcab.getString("price"));
+                                playerModel.setPrice("₹ "+fieldcab.getString("price"));
                                 String images1 = fieldcab.getString("image");
                                 String[] seperated = images1.split(",");
                                 String split = seperated[0].replace("[", "");
@@ -205,8 +209,10 @@ public class Productdetail extends AppCompatActivity {
 
         b2BListAdapter = new B2BListAdapter(this,bookingPojos);
         recyclerView.setAdapter(b2BListAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-
+      //  recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        // Set layout manager.
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
