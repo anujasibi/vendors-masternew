@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".orderlist"></activity>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".orderlist" />
         <activity android:name=".orderplacesuccess" />
         <activity android:name=".AddAddress" />
         <activity android:name=".ordersummary" />
@@ -19,7 +20,7 @@
         <activity android:name=".ManualOrders" />
         <activity android:name=".MainActivity" />
         <activity android:name=".MainUI" />
-        <activity android:name=".Login">
+        <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

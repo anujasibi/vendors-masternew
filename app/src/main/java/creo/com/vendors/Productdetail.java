@@ -18,6 +18,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,7 +58,7 @@ public class Productdetail extends AppCompatActivity {
     SessionManager sessionManager;
     private ProgressDialog dialog ;
     TextView customername,proceed;
-
+    ImageView imageView;
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -68,6 +70,20 @@ public class Productdetail extends AppCompatActivity {
         proceed = findViewById(R.id.proceed);
 
         recyclerView = findViewById(R.id.recyclerView);
+        imageView=findViewById(R.id.back);
+        Window window = activity.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(activity.getResources().getColor(R.color.black));
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         sessionManager = new SessionManager(this);
         dialog=new ProgressDialog(Productdetail.this,R.style.MyAlertDialogStyle);
         dialog.setMessage("Loading..");

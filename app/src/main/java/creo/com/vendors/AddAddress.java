@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -51,6 +52,7 @@ public class AddAddress extends AppCompatActivity {
     private ProgressDialog dialog ;
     Activity activity = this;
     SessionManager sessionManager;
+    ImageView image;
     ArrayList<String> areas = new ArrayList<String>();
 
     @Override
@@ -59,9 +61,23 @@ public class AddAddress extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_address);
+        Window window = activity.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(activity.getResources().getColor(R.color.black));
 
         areas.add("Choose Area");
         dialog=new ProgressDialog(AddAddress.this,R.style.MyAlertDialogStyle);
+        image=findViewById(R.id.imageView3);
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         spinner = findViewById(R.id.spinner);
         sessionManager = new SessionManager(this);

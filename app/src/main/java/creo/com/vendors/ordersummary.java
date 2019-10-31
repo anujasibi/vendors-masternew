@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -72,6 +73,12 @@ public class ordersummary extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ordersummary);
+        Window window = activity.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(activity.getResources().getColor(R.color.black));
      //   Window window = activity.getWindow();
         progressDialog = new ProgressDialog(context, R.style.MyAlertDialogStyle);
         // clear FLAG_TRANSLUCENT_STATUS flag:
@@ -184,7 +191,7 @@ public class ordersummary extends AppCompatActivity {
 
                         if(payment_mode.equals("COD")) {
 
-                            //checkavail();
+                          //  checkavail();
                             showProgressDialogWithTitle("Confirming order..");
                           create_order(payment_mode);
                         }
@@ -237,7 +244,7 @@ public class ordersummary extends AppCompatActivity {
         progressDialog.dismiss();
     }
 
-    /*void checkavail() {
+    void checkavail() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiClient.BASE_URL+"order_details/check_pin_payment/",
                 new Response.Listener<String>() {
                     @Override
@@ -288,7 +295,7 @@ public class ordersummary extends AppCompatActivity {
 
         RequestQueue requestQueue = (RequestQueue) Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-    }*/
+    }
 
     public  void create_order(final String payment_mode) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiClient.BASE_URL+"manual_sel/order_manual_det/",
@@ -305,6 +312,11 @@ public class ordersummary extends AppCompatActivity {
                                  startActivity(new Intent(ordersummary.this,orderplacesuccess.class));
                                 Toast.makeText(ordersummary.this,"Success",Toast.LENGTH_SHORT).show();
                             }
+                            if (jsonObject.optString("code").toString().equals("204")){
+                                popupWindow.dismiss();
+                                relativeLayout.setAlpha(1.0F);
+                                hideProgressDialogWithTitle();
+                                Toast.makeText(ordersummary.this,"Entered Pincode is not available now",Toast.LENGTH_SHORT).show();}
                             if (jsonObject.optString("message").toString().equals("Failed")){
                                 popupWindow.dismiss();
                                 relativeLayout.setAlpha(1.0F);

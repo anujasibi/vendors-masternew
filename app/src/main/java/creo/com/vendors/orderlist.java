@@ -49,6 +49,7 @@ public class orderlist extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     Activity  activity = this;
     ImageView back;
+    private ProgressDialog dialog ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -56,10 +57,21 @@ public class orderlist extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderlist);
+        Window window = activity.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(activity.getResources().getColor(R.color.black));
 
         recyclerView = findViewById(R.id.recyclerView);
         sessionManager = new SessionManager(this);
         back = findViewById(R.id.back);
+
+        dialog=new ProgressDialog(orderlist.this,R.style.MyAlertDialogStyle);
+
+        dialog.setMessage("Loading..");
+        dialog.show();
 
 
 
@@ -163,6 +175,7 @@ public class orderlist extends AppCompatActivity {
 
 
     private void setupRecycler(){
+        dialog.dismiss();
 
         orderAdapter = new DirectOrderAdapter(this,dataModelArrayList);
         recyclerView.setAdapter(orderAdapter);

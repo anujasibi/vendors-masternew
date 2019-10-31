@@ -1,8 +1,10 @@
 package creo.com.vendors;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,8 +47,11 @@ public class Login extends AppCompatActivity {
     SessionManager sessionManager;
     boolean doubleBackToExitPressedOnce = false;
     String device_id = null;
+    Activity activity = this;
     ImageView imageView;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE); // will hide the title
@@ -53,13 +59,30 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Window window = activity.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(activity.getResources().getColor(R.color.black));
+
         imageView=findViewById(R.id.img);
 
         dialog=new ProgressDialog(Login.this,R.style.MyAlertDialogStyle);
+        sessionManager = new SessionManager(this);
+        Toast.makeText(Login.this,"hvjhvv"+sessionManager.getTokens(),Toast.LENGTH_SHORT).show();
+    /*  if (sessionManager.getTokens() == null){
+
+       }       if (!(sessionManager.getTokens() == null)){
+        dialog.setMessage("Logging in ...");
+        dialog.show();
+            startActivity(new Intent(Login.this,MainUI.class));
+          dialog.dismiss();
+       }*/
         Picasso.with(context).load(ApiClient.BASE_URL+"media/files/events_add/extra_pic/haahoo_logo1.png").into(imageView);
 
         Login=findViewById(R.id.login);
-        sessionManager = new SessionManager(this);
+
 
         phoneno=findViewById(R.id.name);
         password=findViewById(R.id.namee);
@@ -80,6 +103,7 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void loginuser(){
@@ -98,7 +122,8 @@ public class Login extends AppCompatActivity {
                             sessionManager.setTokens(token);
 
 
-                            Log.d("otp","mm"+ot);
+
+
                             Log.d("otp","mm"+token);
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
