@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 import creo.com.vendors.utils.ApiClient;
+import creo.com.vendors.utils.Global;
 import creo.com.vendors.utils.SessionManager;
 
 public class ordersummary extends AppCompatActivity {
@@ -65,7 +70,10 @@ public class ordersummary extends AppCompatActivity {
     JSONArray arr = new JSONArray();
     JSONObject products = new JSONObject();
     public String orderid = null;
+    CardView cardView;
+    String po;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -76,6 +84,23 @@ public class ordersummary extends AppCompatActivity {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//if (getIntent().getExtras() !=null) {
+//    Bundle extras = getIntent().getExtras();
+//     po = extras.getString("dis");
+//}
+
+//        if (getIntent().getExtras() ==null) {
+//            po="null";
+//        }
+        cardView=findViewById(R.id.cardu);
+
+        if(Global.discount.equals("")){
+            cardView.setVisibility(View.GONE);
+
+        }
+        if(Global.discount.equals("clicked")){
+            cardView.setVisibility(View.VISIBLE);
+        }
 
 // finally change the color
         window.setStatusBarColor(activity.getResources().getColor(R.color.black));
@@ -102,48 +127,61 @@ public class ordersummary extends AppCompatActivity {
         scrollView.fullScroll(ScrollView.FOCUS_UP);
         recyclerView = findViewById(R.id.recyclerview);
         Log.d("ajkd","bhjnkm"+ ApiClient.directid);
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         token = (pref.getString("token", ""));
 
-        try {
-            HashMap<String, JSONObject> map = new HashMap<String, JSONObject>();
-            for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
-                if (!(ApiClient.productB2BPojo.get(i).getQuantity().equals("0"))){
-                    JSONObject json = new JSONObject();
-                    json.put("id", ApiClient.productB2BPojo.get(i).getId());
-                    Log.d("id","mm"+ApiClient.productB2BPojo.get(i).getId());
-                    json.put("price", ApiClient.productB2BPojo.get(i).getPrice());
-                    total_price.add(ApiClient.productB2BPojo.get(i).getPrice());
-                    Log.d("quantityhgg","qty"+ApiClient.productB2BPojo.get(i).getQuantity());
-                    json.put("quantity", ApiClient.productB2BPojo.get(i).getQuantity());
-                    json.put("refer_token", "");
-                    map.put("json" + i, json);
-                    arr.put(map.get("json" + i));
+            try {
+                HashMap<String, JSONObject> map = new HashMap<String, JSONObject>();
+                for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
+                    if (!(ApiClient.productB2BPojo.get(i).getQuantity().equals("0"))) {
+                        JSONObject json = new JSONObject();
+                        json.put("id", ApiClient.productB2BPojo.get(i).getId());
+                        Log.d("id", "mm" + ApiClient.productB2BPojo.get(i).getId());
+//                    String prices=ApiClient.productB2BPojo.get(i).getId();
+//
+//                        int totalp = Integer.parseInt(prices) - Integer.parseInt(po);
+//                        String totalpr = String.valueOf(totalp);
+//
+//                        Log.d("id", "mm" + totalpr);
+
+//                        Log.d("quantityhgg", "qty" + ApiClient.productB2BPojo.get(i).getQuantity());
+//
+                        json.put("price", ApiClient.productB2BPojo.get(i).getPrice());
+                        total_price.add(ApiClient.productB2BPojo.get(i).getPrice());
+
+                        json.put("quantity", ApiClient.productB2BPojo.get(i).getQuantity());
+                        json.put("refer_token", "");
+                        map.put("json" + i, json);
+                        arr.put(map.get("json" + i));
+                    }
                 }
+
+                products.put("product", arr);
+                //   Log.d("Thejsonstringis " ,"dsfs"+products.length());
+
+                Log.d("size", "mm" + ApiClient.productB2BPojo.size());
+                Log.d("size", "mm" + products.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            int value = 0;
 
-            products.put("product", arr);
-            //   Log.d("Thejsonstringis " ,"dsfs"+products.length());
+            for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
 
-            Log.d("size","mm"+ApiClient.productB2BPojo.size());
-            Log.d("size","mm"+products.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        int value = 0;
-
-        for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
-
-            String price[] = ApiClient.productB2BPojo.get(i).getPrice().split("₹ ");
+                String price[] = ApiClient.productB2BPojo.get(i).getPrice().split("₹ ");
 
 
+                value += Integer.parseInt(price[1]) * Integer.parseInt(ApiClient.productB2BPojo.get(i).getQuantity());
+                //   Log.d("kjbjhvhcv", "jvghcgfc" + ApiClient.productB2BPojo.get(0).getQuantity()+Integer.parseInt(price[1]));
 
-            value += Integer.parseInt(price[0])*Integer.parseInt(ApiClient.productB2BPojo.get(i).getQuantity());
-     //       Log.d("kjbjhvhcv", "jvghcgfc" + ApiClient.productB2BPojo.get(0).getQuantity()+Integer.parseInt(price[1]));
-
-        }
-        total.setText("₹ "+String.valueOf(value));
-
+            }
+            if (Global.price.equals("null")) {
+                total.setText("₹ " + String.valueOf(value));
+            }
+            if (!(Global.price.equals("null"))){
+                total.setText("₹ " + Global.price);
+            }
 
        // Checkout.preload(getApplicationContext());
         makepayment = findViewById(R.id.gotopayment);

@@ -70,7 +70,7 @@ public class Login extends AppCompatActivity {
 
         dialog=new ProgressDialog(Login.this,R.style.MyAlertDialogStyle);
         sessionManager = new SessionManager(this);
-        Toast.makeText(Login.this,"hvjhvv"+sessionManager.getTokens(),Toast.LENGTH_SHORT).show();
+       // Toast.makeText(Login.this,"hvjhvv"+sessionManager.getTokens(),Toast.LENGTH_SHORT).show();
     /*  if (sessionManager.getTokens() == null){
 
        }       if (!(sessionManager.getTokens() == null)){

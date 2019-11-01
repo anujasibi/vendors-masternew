@@ -16,9 +16,10 @@
 
         <ImageView
             android:id="@+id/card_view_image"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="centerInside"/>
+            android:layout_gravity="center_horizontal|center"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/card_view_image_title"

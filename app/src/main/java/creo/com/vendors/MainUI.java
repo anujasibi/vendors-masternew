@@ -110,6 +110,8 @@ public class MainUI extends AppCompatActivity {
             carItemList = new ArrayList<CardRecyclerViewItem>();
             carItemList.add(new CardRecyclerViewItem("Manual Orders", R.drawable.ic_add_shopping_cart_black_24dp));
             carItemList.add(new CardRecyclerViewItem("Manual Orders List", R.drawable.list));
+            carItemList.add(new CardRecyclerViewItem("Earnings", R.drawable.money));
+
 
         }
 

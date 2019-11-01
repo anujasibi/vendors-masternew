@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/head"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:src="@drawable/ic_local_atm_black_24dp"
+            android:layout_height="130dp"
+            android:id="@+id/cash"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:layout_toEndOf="@id/cash"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:layout_toRightOf="@id/cash"
+            android:layout_marginLeft="10dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:id="@+id/date"
+            android:layout_toRightOf="@id/cash"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:id="@+id/amountnew"
+            android:text="Amount Earned:"
+            android:layout_toRightOf="@id/cash"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_toEndOf="@+id/amountnew"
+            android:id="@+id/amount"
+            android:textColor="#5C25B7"
+            android:layout_toRightOf="@id/cash"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/amountnew"
+            android:id="@+id/process"
+            android:text="Order Status:"
+            android:layout_toRightOf="@id/cash"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/amountnew"
+            android:layout_toEndOf="@+id/amountnew"
+            android:id="@+id/processing"
+            android:textColor="#5C25B7"
+            android:layout_toRightOf="@id/cash"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp">
+
+        </TextView>
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/head"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider" />
+
+</RelativeLayout>
