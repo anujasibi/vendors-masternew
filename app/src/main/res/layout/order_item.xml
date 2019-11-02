@@ -71,14 +71,35 @@
                 android:layout_marginRight="2dp"
                 android:layout_toRightOf="@id/img" />
 
+            <TextView
+                android:id="@+id/apply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_marginTop="5dp"
+                android:text="Apply Discount"
+                android:drawableRight="@drawable/discount"
+                android:gravity="center"
+                android:textColor="#5c25b7"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginEnd="50dp"
+                android:layout_toEndOf="@id/img"
+                android:layout_marginRight="2dp"
+                android:layout_toRightOf="@id/img" />
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/price"
                 android:layout_marginTop="5dp"
+                android:inputType="number"
+                android:maxLength="3"
                 android:id="@+id/discount"
                 android:hint="Enter the discount amount"
                 android:gravity="center"
+                android:text="0"
+                android:visibility="gone"
                 android:textColor="#5c25b7"
                 android:textStyle="bold"
                 android:textSize="14sp"
@@ -87,17 +108,51 @@
                 android:layout_marginRight="2dp"
                 android:layout_toRightOf="@id/img" />
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/price"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="30dp"
                 android:id="@+id/imj"
-                android:src="@drawable/ic_arrow_forward_black_24dp"
-                android:layout_toEndOf="@+id/discount"
-                android:layout_toRightOf="@+id/discount"
-                android:layout_marginLeft="30dp" />
+                android:text="Apply"
+                android:visibility="gone"
+                android:layout_alignParentEnd="true"
+                android:textColor="#5C25B7"
+                android:gravity="center"
+
+
+                android:layout_alignParentRight="true"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/rt"
+                android:text=""
+                android:visibility="gone"
+                android:layout_marginBottom="20dp"
+                android:textColor="#5C25B7"
+                android:layout_toEndOf="@id/img"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_marginTop="15dp"
+              android:layout_alignParentEnd="true"
+                android:id="@+id/remove"
+                android:text="Remove"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:textColor="#f70d1a"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true" />
 
 
 

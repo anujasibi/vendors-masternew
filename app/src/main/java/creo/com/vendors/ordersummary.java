@@ -59,6 +59,7 @@ public class ordersummary extends AppCompatActivity {
     ImageView back;
     SessionManager sessionManager;
     ProgressDialog progressDialog;
+    TextView visibilty;
     RelativeLayout relativeLayout;
     String token = null;
     ArrayList<String> name = new ArrayList<>();
@@ -72,6 +73,9 @@ public class ordersummary extends AppCompatActivity {
     public String orderid = null;
     CardView cardView;
     String po;
+    TextView dis;
+    int value = 0;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -94,6 +98,8 @@ public class ordersummary extends AppCompatActivity {
 //        }
         cardView=findViewById(R.id.cardu);
 
+        visibilty=findViewById(R.id.vihjjk);
+
         if(Global.discount.equals("")){
             cardView.setVisibility(View.GONE);
 
@@ -106,6 +112,7 @@ public class ordersummary extends AppCompatActivity {
         window.setStatusBarColor(activity.getResources().getColor(R.color.black));
      //   Window window = activity.getWindow();
         progressDialog = new ProgressDialog(context, R.style.MyAlertDialogStyle);
+        dis=findViewById(R.id.discount);
         // clear FLAG_TRANSLUCENT_STATUS flag:
        /* window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
@@ -119,10 +126,11 @@ public class ordersummary extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ordersummary.super.onBackPressed();
+                startActivity(new Intent(ordersummary.this,AddAddress.class));
             }
         });
         total = findViewById(R.id.total);
+        makepayment = findViewById(R.id.gotopayment);
 
         scrollView.fullScroll(ScrollView.FOCUS_UP);
         recyclerView = findViewById(R.id.recyclerview);
@@ -137,7 +145,7 @@ public class ordersummary extends AppCompatActivity {
                     if (!(ApiClient.productB2BPojo.get(i).getQuantity().equals("0"))) {
                         JSONObject json = new JSONObject();
                         json.put("id", ApiClient.productB2BPojo.get(i).getId());
-                        Log.d("id", "mm" + ApiClient.productB2BPojo.get(i).getId());
+                        Log.d("idjjj", "mm" + ApiClient.productB2BPojo.get(i).getDiscount());
 //                    String prices=ApiClient.productB2BPojo.get(i).getId();
 //
 //                        int totalp = Integer.parseInt(prices) - Integer.parseInt(po);
@@ -149,7 +157,12 @@ public class ordersummary extends AppCompatActivity {
 //
                         json.put("price", ApiClient.productB2BPojo.get(i).getPrice());
                         total_price.add(ApiClient.productB2BPojo.get(i).getPrice());
-
+                        if (ApiClient.productB2BPojo.get(i).getDiscount()==null){
+                            json.put("discount","0");
+                        }
+                        if (ApiClient.productB2BPojo.get(i).getDiscount()!=null) {
+                            json.put("discount", ApiClient.productB2BPojo.get(i).getDiscount());
+                        }
                         json.put("quantity", ApiClient.productB2BPojo.get(i).getQuantity());
                         json.put("refer_token", "");
                         map.put("json" + i, json);
@@ -162,10 +175,13 @@ public class ordersummary extends AppCompatActivity {
 
                 Log.d("size", "mm" + ApiClient.productB2BPojo.size());
                 Log.d("size", "mm" + products.toString());
+
+
+                //Log.d("Total","mm"+(total-value));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            int value = 0;
+
 
             for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
 
@@ -176,15 +192,41 @@ public class ordersummary extends AppCompatActivity {
                 //   Log.d("kjbjhvhcv", "jvghcgfc" + ApiClient.productB2BPojo.get(0).getQuantity()+Integer.parseInt(price[1]));
 
             }
-            if (Global.price.equals("null")) {
-                total.setText("₹ " + String.valueOf(value));
-            }
-            if (!(Global.price.equals("null"))){
-                total.setText("₹ " + Global.price);
-            }
+
+            visibilty.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Global.discount.size()==0) {
+                        total.setText("₹ " + String.valueOf(value));
+                        cardView.setVisibility(View.VISIBLE);
+                        makepayment.setVisibility(View.VISIBLE);
+                        visibilty.setVisibility(View.GONE);
+                    }
+                    if (!(Global.discount.size()==0)){
+                        total.setText("₹ " + (value-Integer.parseInt(Global.total)));
+                        cardView.setVisibility(View.VISIBLE);
+                        makepayment.setVisibility(View.VISIBLE);
+                        visibilty.setVisibility(View.GONE);
+                        Log.d("totalaa","mmmm"+Global.total);
+                    }
+
+
+                }
+            });
+
+
+
+            /*dis.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("discounted","price"+(value - Integer.parseInt(Global.discount)));
+                }
+            });*/
+
+
 
        // Checkout.preload(getApplicationContext());
-        makepayment = findViewById(R.id.gotopayment);
+
 
         for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
             if (!(ApiClient.productB2BPojo.get(i).getQuantity().equals("0"))) {
@@ -406,7 +448,8 @@ public class ordersummary extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(ordersummary.this,AddAddress.class));
+
     }
 
 

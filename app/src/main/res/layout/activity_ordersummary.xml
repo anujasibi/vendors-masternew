@@ -179,11 +179,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="30dp"
-                android:text="Make Payment"
-                android:id="@+id/gotopayment"
+                android:text="Get The Price"
+                android:id="@+id/vihjjk"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                android:background="@drawable/selc"
+                android:textColor="#fff"
+                />
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp"
+                android:text="Make Payment"
+                android:visibility="gone"
+                android:id="@+id/gotopayment"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:textAlignment="center"
                 android:gravity="center_vertical"
                 android:background="@drawable/selc"

@@ -7,6 +7,7 @@ public class ProductB2BPojo {
     public String product_name;
     public String price;
     public String quantity;
+    public String discount;
 
     public String getQuantity() {
         return quantity;
@@ -30,6 +31,14 @@ public class ProductB2BPojo {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
     public String getProduct_name() {

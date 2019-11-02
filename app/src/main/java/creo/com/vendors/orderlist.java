@@ -135,7 +135,7 @@ public class orderlist extends AppCompatActivity {
                                 playerModel.setProductname(dataobj.optString("product_name"));
                                // ApiClient.productids.add(dataobj.optString("id"));
                                 playerModel.setName(dataobj.optString("name"));
-                                playerModel.setPrice(dataobj.optString("price"));
+                                playerModel.setPrice(dataobj.optString("discount_price"));
                                 playerModel.setStatus(dataobj.optString("qty"));
                                 playerModel.setdelivery(dataobj.optString("order_status"));
                                 playerModel.setImg(ApiClient.BASE_URL+"media/" + split);
@@ -186,21 +186,7 @@ public class orderlist extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            finishAffinity();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(orderlist.this,"Press again to exit",Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
+      startActivity(new Intent(orderlist.this,MainUI.class));
     }
 
 }

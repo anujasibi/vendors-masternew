@@ -67,7 +67,7 @@ public class AddAddress extends AppCompatActivity {
 
 // finally change the color
         window.setStatusBarColor(activity.getResources().getColor(R.color.black));
-
+        Global.discount.clear();
         areas.add("Choose Area");
         dialog=new ProgressDialog(AddAddress.this,R.style.MyAlertDialogStyle);
         image=findViewById(R.id.imageView3);

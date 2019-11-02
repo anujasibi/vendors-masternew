@@ -156,24 +156,10 @@ public class ManualOrders extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            finishAffinity();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(ManualOrders.this,"Press again to exit",Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
+       startActivity(new Intent(ManualOrders.this,MainUI.class));
     }
 
 }
