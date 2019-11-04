@@ -84,10 +84,24 @@ public class ManualOrders extends AppCompatActivity {
                     Toast.makeText(ManualOrders.this,"All Field Required",Toast.LENGTH_LONG).show();
 
                 }
+                if(phoneno.getText().length()<10){
+                    Toast.makeText(ManualOrders.this,"Please enter a valid phone number",Toast.LENGTH_LONG).show();
+                }
+                if(name.getText().length()<3){
+                    name.setError("Enter a valid name");
+                }
+                if(!(name.getText().toString().equals("")||phoneno.getText().toString().equals(""))){
+                    if(!(phoneno.getText().length()<10)){
+                        if(!(name.getText().length()<3)){
+                            dialog.setMessage("Loading..");
+                            dialog.show();
+                            submituser();
+                        }
+                    }
+
+                }
                 else {
-                    dialog.setMessage("Loading..");
-                    dialog.show();
-                    submituser();
+
 
                 }
             }

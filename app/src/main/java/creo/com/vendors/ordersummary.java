@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -71,10 +72,15 @@ public class ordersummary extends AppCompatActivity {
     JSONArray arr = new JSONArray();
     JSONObject products = new JSONObject();
     public String orderid = null;
+    public String amount =
+            "null";
     CardView cardView;
     String po;
     TextView dis;
     int value = 0;
+    TextView apply,rt,remove,imj,dt,dtn;
+    EditText discou;
+    int disount_amount=0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -88,6 +94,13 @@ public class ordersummary extends AppCompatActivity {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        apply=findViewById(R.id.apply);
+        discou=findViewById(R.id.discount);
+        imj=findViewById(R.id.imj);
+        rt=findViewById(R.id.rt);
+        remove=findViewById(R.id.remove);
+        dt=findViewById(R.id.dt);
+        dtn=findViewById(R.id.dtn);
 //if (getIntent().getExtras() !=null) {
 //    Bundle extras = getIntent().getExtras();
 //     po = extras.getString("dis");
@@ -96,6 +109,95 @@ public class ordersummary extends AppCompatActivity {
 //        if (getIntent().getExtras() ==null) {
 //            po="null";
 //        }
+
+        dtn.setText("0");
+
+
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                discou.setVisibility(View.VISIBLE);
+                imj.setVisibility(View.VISIBLE);
+                apply.setVisibility(View.GONE);
+
+
+            }
+        });
+
+        imj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                amount=discou.getText().toString();
+                discou.setVisibility(View.GONE);
+                imj.setVisibility(View.GONE);
+                rt.setVisibility(View.VISIBLE);
+                rt.setText("Discount of amount Rs "+amount);
+                remove.setVisibility(View.VISIBLE);
+                dt.setVisibility(View.VISIBLE);
+                dtn.setVisibility(View.VISIBLE);
+
+                if(amount.equals("null")){
+                    int disount_amount=(value-Integer.parseInt(Global.total));
+                    dtn.setText(String.valueOf(disount_amount));
+                }
+
+                if(!(amount.equals("null"))){
+                    int disount_amount=(value-Integer.parseInt(Global.total)-Integer.parseInt(amount));
+                    dtn.setText(String.valueOf(disount_amount));
+                    Log.d("totak_gggg","mm"+dtn.getText().toString());
+                    Log.d("totak_gggg","mm"+String.valueOf(disount_amount));
+
+                }
+            }
+        });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                amount=null;
+                discou.setVisibility(View.VISIBLE);
+                imj.setVisibility(View.VISIBLE);
+                rt.setVisibility(View.GONE);
+                remove.setVisibility(View.GONE);
+                dt.setVisibility(View.GONE);
+                dtn.setVisibility(View.GONE);
+                dtn.setText("0");
+
+
+                imj.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        amount=discou.getText().toString();
+                        discou.setVisibility(View.GONE);
+                        imj.setVisibility(View.GONE);
+                        rt.setVisibility(View.VISIBLE);
+                        rt.setText("Discount of amount Rs "+amount);
+                        remove.setVisibility(View.VISIBLE);
+                        dt.setVisibility(View.VISIBLE);
+                        dtn.setVisibility(View.VISIBLE);
+
+
+                        if(amount.equals(null)){
+                             disount_amount=(value-Integer.parseInt(Global.total));
+                            dtn.setText(String.valueOf(disount_amount));
+                        }
+
+                        if(!(amount.equals(null))){
+                             disount_amount=(value-Integer.parseInt(Global.total)-Integer.parseInt(amount));
+                            dtn.setText(String.valueOf(disount_amount));
+                            Log.d("tota;l_fff","mm"+dtn.getText().toString());
+                            Log.d("tota;l_fff","mm"+String.valueOf(disount_amount));
+                        }
+                    }
+                });
+
+
+
+
+
+            }
+        });
         cardView=findViewById(R.id.cardu);
 
         visibilty=findViewById(R.id.vihjjk);
@@ -359,6 +461,7 @@ public class ordersummary extends AppCompatActivity {
                 params.put("product",products.toString());
                 params.put("address_id",ApiClient.address);
 
+
                 return params;
 
             }
@@ -424,6 +527,9 @@ public class ordersummary extends AppCompatActivity {
                 params.put("payment_status","0");
                 params.put("payment_method",payment_mode);
                 Log.d("products","mm"+payment_mode);
+              //  params.put("total_discount",String.valueOf(disount_amount));
+               params.put("total_discount",dtn.getText().toString());
+                Log.d("total_discount","mm"+dtn.getText().toString());
 
 
                 return params;

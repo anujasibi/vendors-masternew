@@ -79,7 +79,7 @@
                     <TextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:text="Amount Applicable  : "
+                        android:text="Price :"
                         android:id="@+id/amt_ear"
                         android:textColor="@color/black"
                         android:layout_below="@id/title"

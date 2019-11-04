@@ -85,8 +85,8 @@ public class Earnings extends AppCompatActivity {
        });
         dialog=new ProgressDialog(Earnings.this,R.style.MyAlertDialogStyle);
         sessionManager = new SessionManager(this);
-
-
+dialog.setMessage("Loading");
+dialog.show();
 
         fetchingJSON();
         //Toast.makeText(getContext(),"direct",Toast.LENGTH_SHORT).show();
@@ -113,6 +113,7 @@ public class Earnings extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        dialog.dismiss();
 
                         try {
 
