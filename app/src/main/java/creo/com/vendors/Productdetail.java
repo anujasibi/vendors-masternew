@@ -107,7 +107,7 @@ public class Productdetail extends AppCompatActivity {
                     Toast.makeText(Productdetail.this,"Please select atleast one product",Toast.LENGTH_SHORT).show();
                 }
                 if (!(ApiClient.directsell_cartcount.equals("0"))) {
-                    startActivity(new Intent(Productdetail.this, AddAddress.class));
+                    startActivity(new Intent(Productdetail.this, chooseaddress.class));
                 }
             }
         });

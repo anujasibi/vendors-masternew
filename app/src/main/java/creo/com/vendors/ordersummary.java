@@ -228,7 +228,7 @@ public class ordersummary extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ordersummary.this,AddAddress.class));
+                startActivity(new Intent(ordersummary.this,chooseaddress.class));
             }
         });
         total = findViewById(R.id.total);
@@ -236,11 +236,11 @@ public class ordersummary extends AppCompatActivity {
 
         scrollView.fullScroll(ScrollView.FOCUS_UP);
         recyclerView = findViewById(R.id.recyclerview);
-        Log.d("ajkd","bhjnkm"+ ApiClient.directid);
+       // Log.d("ajkd","bhjnkm"+ sessionManager.getTokens());
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         token = (pref.getString("token", ""));
-
+        Log.d("ajkd","bhjnkm"+ token);
             try {
                 HashMap<String, JSONObject> map = new HashMap<String, JSONObject>();
                 for (int i = 0; i < ApiClient.productB2BPojo.size(); i++) {
@@ -470,7 +470,8 @@ public class ordersummary extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
 
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("Authorization","Token "+token);
+                params.put("Authorization","Token "+sessionManager.getTokens());
+
                 return params;
 
             }
@@ -541,6 +542,7 @@ public class ordersummary extends AppCompatActivity {
 
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("Authorization","Token "+sessionManager.getTokens());
+                Log.d("Tokenccccc","mm"+sessionManager.getTokens());
                 return params;
 
             }
@@ -554,7 +556,7 @@ public class ordersummary extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(ordersummary.this,AddAddress.class));
+        startActivity(new Intent(ordersummary.this,chooseaddress.class));
 
     }
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chooseaddress">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/re"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Choose Address"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:background="#5C25B7"
+                    android:id="@+id/tex"
+                    />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                    android:id="@+id/back"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp" />
+
+            </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:id="@+id/card1"
+                android:layout_below="@+id/re"
+                android:layout_marginStart="10dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                app:cardElevation="10dp"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="ADD ADDRESS MANUALLY"
+                    android:textColor="#5c25b7"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:id="@+id/card2"
+                android:layout_below="@+id/card1"
+                android:layout_marginStart="10dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                app:cardElevation="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="PASTE YOUR ADDRESS"
+                    android:textColor="#5c25b7"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

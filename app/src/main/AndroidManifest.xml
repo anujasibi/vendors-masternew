@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Earnings"></activity>
+        <activity android:name=".pasteaddress"></activity>
+        <activity android:name=".chooseaddress" />
+        <activity android:name=".Earnings" />
         <activity android:name=".Login" />
         <activity android:name=".orderlist" />
         <activity android:name=".orderplacesuccess" />
