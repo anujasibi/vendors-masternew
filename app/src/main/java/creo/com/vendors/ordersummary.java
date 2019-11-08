@@ -73,7 +73,7 @@ public class ordersummary extends AppCompatActivity {
     JSONObject products = new JSONObject();
     public String orderid = null;
     public String amount =
-            "null";
+            "0";
     CardView cardView;
     String po;
     TextView dis;
@@ -81,6 +81,7 @@ public class ordersummary extends AppCompatActivity {
     TextView apply,rt,remove,imj,dt,dtn;
     EditText discou;
     int disount_amount=0;
+    int total_discount=0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -137,26 +138,29 @@ public class ordersummary extends AppCompatActivity {
                 dt.setVisibility(View.VISIBLE);
                 dtn.setVisibility(View.VISIBLE);
 
-                if(amount.equals("null")){
+                if(amount.equals("0")){
                     int disount_amount=(value-Integer.parseInt(Global.total));
                     dtn.setText(String.valueOf(disount_amount));
                 }
 
-                if(!(amount.equals("null"))){
+                if(!(amount.equals("0"))){
                     int disount_amount=(value-Integer.parseInt(Global.total)-Integer.parseInt(amount));
                     dtn.setText(String.valueOf(disount_amount));
                     Log.d("totak_gggg","mm"+dtn.getText().toString());
                     Log.d("totak_gggg","mm"+String.valueOf(disount_amount));
 
                 }
+
+
             }
         });
 
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                amount=null;
+                amount="0";
                 discou.setVisibility(View.VISIBLE);
+                discou.setText("0");
                 imj.setVisibility(View.VISIBLE);
                 rt.setVisibility(View.GONE);
                 remove.setVisibility(View.GONE);
@@ -178,16 +182,18 @@ public class ordersummary extends AppCompatActivity {
                         dtn.setVisibility(View.VISIBLE);
 
 
-                        if(amount.equals(null)){
+                        if(amount.equals("0")){
                              disount_amount=(value-Integer.parseInt(Global.total));
                             dtn.setText(String.valueOf(disount_amount));
+
                         }
 
-                        if(!(amount.equals(null))){
+                        if(!(amount.equals("0"))){
                              disount_amount=(value-Integer.parseInt(Global.total)-Integer.parseInt(amount));
                             dtn.setText(String.valueOf(disount_amount));
                             Log.d("tota;l_fff","mm"+dtn.getText().toString());
                             Log.d("tota;l_fff","mm"+String.valueOf(disount_amount));
+
                         }
                     }
                 });
@@ -266,7 +272,7 @@ public class ordersummary extends AppCompatActivity {
                             json.put("discount", ApiClient.productB2BPojo.get(i).getDiscount());
                         }
                         json.put("quantity", ApiClient.productB2BPojo.get(i).getQuantity());
-                        json.put("refer_token", "");
+                       // json.put("refer_token", "");
                         map.put("json" + i, json);
                         arr.put(map.get("json" + i));
                     }
@@ -291,7 +297,7 @@ public class ordersummary extends AppCompatActivity {
 
 
                 value += Integer.parseInt(price[1]) * Integer.parseInt(ApiClient.productB2BPojo.get(i).getQuantity());
-                //   Log.d("kjbjhvhcv", "jvghcgfc" + ApiClient.productB2BPojo.get(0).getQuantity()+Integer.parseInt(price[1]));
+                 Log.d("kjbjhvhcv", "jvghcgfc" + value);
 
             }
 
@@ -303,6 +309,8 @@ public class ordersummary extends AppCompatActivity {
                         cardView.setVisibility(View.VISIBLE);
                         makepayment.setVisibility(View.VISIBLE);
                         visibilty.setVisibility(View.GONE);
+                        Log.d("totalaa","mmmm"+Global.total);
+
                     }
                     if (!(Global.discount.size()==0)){
                         total.setText("₹ " + (value-Integer.parseInt(Global.total)));
@@ -310,11 +318,15 @@ public class ordersummary extends AppCompatActivity {
                         makepayment.setVisibility(View.VISIBLE);
                         visibilty.setVisibility(View.GONE);
                         Log.d("totalaa","mmmm"+Global.total);
+
                     }
 
 
                 }
             });
+
+
+
 
 
 
@@ -337,6 +349,8 @@ public class ordersummary extends AppCompatActivity {
             }
         }
 
+
+
         SummaryAdapter cartAdapter = new SummaryAdapter(pjo, context);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -344,6 +358,24 @@ public class ordersummary extends AppCompatActivity {
         makepayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(discou.getText().length()==0){
+                    total_discount=(Integer.parseInt(Global.total));
+
+                    Log.d("hhhhhhhhhhhh","mm"+total_discount);
+
+                }
+                if(discou.getText().length()>0){
+                    total_discount=(Integer.parseInt(Global.total)+Integer.parseInt(discou.getText().toString()));
+
+                    Log.d("hhhhhhhhhhhh","mm"+total_discount);
+                }
+
+                if(Global.total.equals("0")){
+                    total_discount=Integer.parseInt(amount);
+
+                    Log.d("hhhhhhhhhhhh","mm"+total_discount);
+                }
 
                 LayoutInflater layoutInflater = (LayoutInflater) ordersummary.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView = layoutInflater.inflate(R.layout.payment_mode, null);
@@ -375,7 +407,10 @@ public class ordersummary extends AppCompatActivity {
 
                           //  checkavail();
                             showProgressDialogWithTitle("Confirming order..");
+
                           create_order(payment_mode);
+
+
                         }
 //                        if(payment_mode.equals("ONLINE")){
 //
@@ -401,6 +436,7 @@ public class ordersummary extends AppCompatActivity {
                 closePopupBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        total_discount=0;
                         popupWindow.dismiss();
                         relativeLayout.setAlpha(1.0F);
                     }
@@ -529,10 +565,12 @@ public class ordersummary extends AppCompatActivity {
                 params.put("payment_method",payment_mode);
                 Log.d("products","mm"+payment_mode);
               //  params.put("total_discount",String.valueOf(disount_amount));
-               params.put("total_discount",dtn.getText().toString());
+                params.put("total_discount",dtn.getText().toString());
                 Log.d("total_discount","mm"+dtn.getText().toString());
-
-
+                params.put("dis_amount",String.valueOf(total_discount));
+                Log.d("dis_amount","mm"+total_discount);
+                params.put("total_amount","₹ "+String.valueOf(value));
+                Log.d("dis_amount","mm"+String.valueOf(value));
                 return params;
 
             }
