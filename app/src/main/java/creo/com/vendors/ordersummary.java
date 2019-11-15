@@ -529,6 +529,7 @@ public class ordersummary extends AppCompatActivity {
                                 popupWindow.dismiss();
                                 relativeLayout.setAlpha(1.0F);
                                 hideProgressDialogWithTitle();
+                                Global.total="0";
                                  startActivity(new Intent(ordersummary.this,orderplacesuccess.class));
                                 Toast.makeText(ordersummary.this,"Success",Toast.LENGTH_SHORT).show();
                             }
