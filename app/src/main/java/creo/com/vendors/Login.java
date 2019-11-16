@@ -125,7 +125,7 @@ public class Login extends AppCompatActivity {
 
 
                             Log.d("otp","mm"+token);
-                            Log.d("code","mm"+status);
+                            Log.d("code","mm"+response);
                             if(status.equals("200")){
                                 Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(Login.this, MainUI.class);

@@ -29,7 +29,7 @@ public class splashscreen extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         sessionManager = new SessionManager(this);
-        Toast.makeText(splashscreen.this,"token"+sessionManager.getTokens().length(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(splashscreen.this,"token"+sessionManager.getTokens().length(),Toast.LENGTH_SHORT).show();
 
 
 // finally change the color
