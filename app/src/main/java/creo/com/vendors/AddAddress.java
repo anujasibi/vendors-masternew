@@ -75,7 +75,7 @@ public class AddAddress extends AppCompatActivity {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(AddAddress.this,chooseaddress.class));
             }
         });
 
@@ -301,5 +301,10 @@ public class AddAddress extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AddAddress.this,chooseaddress.class));
     }
 }

@@ -62,8 +62,8 @@ public class ApiClient {
     public static String event_time = "null";
     public static String event_location = "null";
     public static ArrayList<String> images = new ArrayList<>();
-    public static  final String BASE_URL = "https://haahoo.in/";
-    //public static final String BASE_URL = "https://testapi.creopedia.com/";
+   // public static  final String BASE_URL = "https://haahoo.in/";
+    public static final String BASE_URL = "https://testapi.creopedia.com/";
     public static String username = null;
     public static String user_contact_no = null;
   //  private static Retrofit retrofit = null;

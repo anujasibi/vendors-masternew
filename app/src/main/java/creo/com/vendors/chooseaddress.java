@@ -35,7 +35,7 @@ public class chooseaddress extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(chooseaddress.this,Productdetail.class));
             }
         });
         // finally change the color
@@ -63,6 +63,6 @@ public class chooseaddress extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(chooseaddress.this,Productdetail.class));
     }
 }

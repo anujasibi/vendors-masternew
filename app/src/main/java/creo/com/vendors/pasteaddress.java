@@ -66,7 +66,7 @@ public class pasteaddress extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(pasteaddress.this,chooseaddress.class));
             }
         });
 
@@ -91,7 +91,7 @@ public class pasteaddress extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(pasteaddress.this,chooseaddress.class));
     }
 
     public void pasteuser(){
@@ -158,4 +158,5 @@ public class pasteaddress extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
 }

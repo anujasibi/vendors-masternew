@@ -85,7 +85,7 @@ public class Productdetail extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(Productdetail.this,MainUI.class));
             }
         });
         sessionManager = new SessionManager(this);
@@ -217,7 +217,7 @@ public class Productdetail extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBackPressed() {
-      super.onBackPressed();
+        startActivity(new Intent(Productdetail.this,MainUI.class));
     }
 
 }

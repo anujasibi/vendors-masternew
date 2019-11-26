@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Global {
 
-    //public static String BASE_URL = "https://testapi.creopedia.com/";
-    public static String BASE_URL = "https://haahoo.in/";
+    public static String BASE_URL = "https://testapi.creopedia.com/";
+    //public static String BASE_URL = "https://haahoo.in/";
     public static  ArrayList<String> discount = new ArrayList<>();
     public static String price="null";
     public static String total="0";

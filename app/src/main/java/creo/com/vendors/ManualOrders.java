@@ -73,7 +73,7 @@ public class ManualOrders extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(ManualOrders.this,MainUI.class));
             }
         });
 
