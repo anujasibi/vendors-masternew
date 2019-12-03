@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/logg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pasteaddress"></activity>
+        <activity android:name=".changepassword"></activity>
+        <activity android:name=".forgototp" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".pasteaddress" />
         <activity android:name=".chooseaddress" />
         <activity android:name=".Earnings" />
         <activity android:name=".Login" />
@@ -27,6 +31,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

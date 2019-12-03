@@ -39,7 +39,7 @@ import creo.com.vendors.utils.SessionManager;
 
 public class Login extends AppCompatActivity {
 
-    TextView Login;
+    TextView Login,forgot;
     TextInputEditText phoneno,password;
     Context context=this;
     private String URLline = Global.BASE_URL+"login/login/";
@@ -70,6 +70,13 @@ public class Login extends AppCompatActivity {
 
         dialog=new ProgressDialog(Login.this,R.style.MyAlertDialogStyle);
         sessionManager = new SessionManager(this);
+        forgot=findViewById(R.id.forgot);
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this,ForgotPassword.class));
+            }
+        });
        // Toast.makeText(Login.this,"hvjhvv"+sessionManager.getTokens(),Toast.LENGTH_SHORT).show();
     /*  if (sessionManager.getTokens() == null){
 
